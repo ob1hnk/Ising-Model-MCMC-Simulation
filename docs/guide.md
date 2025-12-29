@@ -34,7 +34,7 @@ $h_i$: 각 위치 i에서의 자기장.
 3. 온도 $T$ 의 energy reservoir과 맞닿아있는 고전적인 계에서, configuration이 $c$ 일 확률 $P$ 는
     
     $$
-    P(c) = \frac{e^{-\beta E(c)}}{\sum_{c} e^{-\beta E(c)}}\ , \ 𝛽≡1/(𝑘𝑇)
+    P(c) = \frac{e^{-\beta E(c)}}{\sum_{c} e^{-\beta E(c)}}\ , \ \beta \equiv 1/(kT)
     $$
     
     이다. $k$는 볼츠만 상수로, 우리는 $k = 1$만 다룰 것이다.
@@ -57,7 +57,7 @@ Markov chain이 non-pathological 하려면:
 1. *aperiodic*; it doesn’t cycle between configurations in a subset of the system’s full configuration space.
 2. *connected*; given two configurations, there is a path with non-zero probability that the chain *could* (but not necessarily *will*) follow to get from one to the other.
 
-아이징 모델을 simulate하기 위해,  $𝜋(𝑐)∼exp(−𝛽𝐸𝑐)$와 같은 stationary distribution을 가지는 markov chain을 만들자. 그때 Metropolis-Hastings algorithm을 이용한다.
+아이징 모델을 simulate하기 위해,  $\pi(c) \sim e^{-\beta Ec}$ 와 같은 stationary distribution을 가지는 markov chain을 만들자. 그때 Metropolis-Hastings algorithm을 이용한다.
 
 ### The Metropolis-Hastings Algorithm
 
@@ -106,7 +106,7 @@ E = -J \sum_{(x,y)} s_{(x,y)}\, s_{(x+a, y+b)}
 , \ where \ (𝑎,𝑏)∈{(1,0),(0,1),(−1,0),(0,−1)}
 $$
 
-우리는 $L \times L$의 그리드(L = 3, 27, 81 등)를 사용할 것이다.
+우리는 $L \times L$의 그리드( $L = 3, 27, 81$ 등)를 사용할 것이다.
 
 참고: $L \times L$ 그리드의 스핀(-1 or 1)을 랜덤 초기화하기 위해 `np.random.choice((L,L), [1,-1])`을 사용한다.
 
@@ -118,7 +118,7 @@ $$
         
         $\frac{\exp\!\left(-\beta E_{\text{new}}\right)}{\exp\!\left(-\beta E_{\text{old}}\right)}= \exp\!\left(-\beta \Delta E\right)$
         
-    2. 이때, O(1)으로 연산 가능하도록 한다. 특히, `Energy(spins)` 를 두 번 호출하여 O(N)이 되지 않도록 한다. 즉, `Energy(spins)` 호출 → spin flip → `Energy(spins)` 다시 호출하지 말도록.
+    2. 이때, $O(1)$으로 연산 가능하도록 한다. 특히, `Energy(spins)` 를 두 번 호출하여 $O(N)$이 되지 않도록 한다. 즉, `Energy(spins)` 호출 → spin flip → `Energy(spins)` 다시 호출하지 말도록.
 
 ## 4. Writing MCMC
 
@@ -127,12 +127,10 @@ MCMC에서, **sweep**(하나의 sweep는 $N$번의 **step**)을 여러번 반복
 ### **Step의 과정**
 
 1. 현재의 configuration $c$를 고려하여, $p(c →𝑐′)$의 확률을 가지는 새로운 configuration $c'$를 선택한다. 가장 간단한 방법은 random spin을 선택하여 flip하는 것이다.
-우리의 경우 $T(c \to c') = T(c' \to c) = \frac{1}{N}, \ N\ is\ the\ number\ of\ spins$ 이고, 
-
-acceptance probability $\alpha$에서 $T$가 상쇄된다.
+우리의 경우 $T(c \to c') = T(c' \to c) = \frac{1}{N}, \ N\ is\ the\ number\ of\ spins$ 이고, acceptance probability $\alpha$에서 $T$가 상쇄된다.
 
 1. 에너지 차이 $\Delta(c, c') \equiv E(c') - E(c)$를 계산한다.
-2. $T(c' \to c)\, T(c \to c') \, \exp\!\left[-\beta \Delta(c, c')\right] > \operatorname{ran}(0,1)$인 경우, 새로운 configuration $c'$로 전환하고 그렇지 않은 경우 기존의 $c$에 머문다.
+2. $T(c' \to c)\, T(c \to c') \, \exp\!\left[-\beta \Delta(c, c')\right] > {ran}(0,1)$인 경우, 새로운 configuration $c'$로 전환하고 그렇지 않은 경우 기존의 $c$에 머문다.
 
 ### Sweep의 과정
 
@@ -214,12 +212,12 @@ $$
 
 ### Phases
 
-물질의 phase(상)은 관측량과 같은 order parameter(여기에서는 $~~M^2~~$) 으로 결정되며, 이때 하나의 phase에서 값이 $~~0~~$이고 다른 phase에서 값이 nonzero이다.
+물질의 phase(상)은 관측량과 같은 order parameter(여기에서는 $M^2$) 으로 결정되며, 이때 하나의 phase에서 값이 $0$이고 다른 phase에서 값이 nonzero이다.
 
 2D 아이징 모델에서는 2개의 phase가 있다.
 
-- ferromagnet(강자성): 모든 스핀이 같은 방향, 열역학적 극한에서 $~~M^2 \neq 0~~$.
-- paramagnet(상자성): 스핀이 무작위로 배열, 열역학적 극한에서 $~~M^2 = 0~~$.
+- ferromagnet(강자성): 모든 스핀이 같은 방향, 열역학적 극한에서 $M^2 \neq 0$.
+- paramagnet(상자성): 스핀이 무작위로 배열, 열역학적 극한에서 $M^2 = 0$.
 
 ### A note about errors
 
