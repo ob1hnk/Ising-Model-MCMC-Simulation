@@ -33,9 +33,9 @@ $h_i$: 각 위치 i에서의 자기장.
 2. 각 configuration $c$ 는 에너지 $E(c)$ 가 있다.
 3. 온도 $T$ 의 energy reservoir과 맞닿아있는 고전적인 계에서, configuration이 $c$ 일 확률 $P$ 는
     
-    $$
+    $
     P(c) = \frac{e^{-\beta E(c)}}{\sum_{c} e^{-\beta E(c)}}\ , \ \beta \equiv 1/(kT)
-    $$
+    $
     
     이다. $k$는 볼츠만 상수로, 우리는 $k = 1$만 다룰 것이다.
     
@@ -147,7 +147,7 @@ for sweep in range(0,10000):
 
 ### 결과 그래프 도출
 
-이 histogram을 이론적 계산값과 비교하자. Theory graph를 만들기 위해, 파이썬으로 $2^9$개의 configuration의 에너지를 모두 계산하고 $ \frac{\exp\!\left(-\beta E(c)\right)}{Z}, \ Z\ is\ the\ normalization\ $을 이용할 수 있다.
+이 histogram을 이론적 계산값과 비교하자. Theory graph를 만들기 위해, 파이썬으로 $2^9$개의 configuration의 에너지를 모두 계산하고 $\frac{\exp\!\left(-\beta E(c)\right)}{Z}, \ Z\ is\ the\ normalization\$을 이용할 수 있다.
 
 두 개의 그래프를 포개어 나타내자.
 
