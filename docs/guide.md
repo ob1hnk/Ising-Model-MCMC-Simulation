@@ -130,7 +130,7 @@ MCMC에서, **sweep**(하나의 sweep는 $N$번의 **step**)을 여러번 반복
 우리의 경우 $T(c \to c') = T(c' \to c) = \frac{1}{N}, \ N\ is\ the\ number\ of\ spins$ 이고, acceptance probability $\alpha$에서 $T$가 상쇄된다.
 
 1. 에너지 차이 $\Delta(c, c') \equiv E(c') - E(c)$를 계산한다.
-2. $T(c' \to c)\, T(c \to c') \, \exp\!\left[-\beta \Delta(c, c')\right] > {ran}(0,1)$인 경우, 새로운 configuration $c'$로 전환하고 그렇지 않은 경우 기존의 $c$에 머문다.
+2. ${T(c' \to c)\ \over T(c \to c')} \, \exp\!\left[-\beta \Delta(c, c')\right] > \operatorname{ran}(0,1)$인 경우, 새로운 configuration $c'$로 전환하고 그렇지 않은 경우 기존의 $c$에 머문다.
 
 ### Sweep의 과정
 
